@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/priorknowledge/loom.svg?branch=master)](https://travis-ci.org/priorknowledge/loom)
+[![Build Status](https://travis-ci.org/posterior/loom.svg?branch=master)](https://travis-ci.org/posterior/loom)
 
 # Loom
 
