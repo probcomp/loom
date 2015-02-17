@@ -117,7 +117,7 @@ def synthesize_search(name, image_pos):
         row_id = int(row_id.split(':')[1])
         sample_x, sample_y = rows[row_id]
         x, y = to_image_coordinates(sample_x, sample_y)
-        image[x, y] = [255 * (1 - 1/score), 0, 0]
+        image[x, y] = [255 * (1 - 1 / score), 0, 0]
     return image
 
 

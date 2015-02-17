@@ -52,7 +52,7 @@ test: dev
 	  || (echo '...patching schema_pb2.py' \
 	    ; sed -i '/descriptor_pb2/d' loom/schema_pb2.py)  # HACK
 	pyflakes setup.py loom examples
-	pep8 --repeat --exclude=*_pb2.py setup.py loom examples
+	pep8 --repeat --ignore=E402,E731 --exclude=*_pb2.py setup.py loom examples
 	python -m loom.datasets test
 	$(nose_env) nosetests -v loom examples
 	$(MAKE) -C doc

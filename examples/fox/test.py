@@ -31,7 +31,7 @@ import main
 def test():
     main.clean()
     size = 64
-    main.IMAGE = main.IMAGE[size:2*size, size:2*size]
+    main.IMAGE = main.IMAGE[size: 2 * size, size: 2 * size]
     main.run(row_count=100)
     main.cluster(cluster_count=2, sample_count=10, pixel_count=10)
 
