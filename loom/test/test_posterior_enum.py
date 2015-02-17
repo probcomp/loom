@@ -36,7 +36,7 @@ from distributions.tests.util import seed_all
 from distributions.util import scores_to_probs
 from distributions.io.stream import protobuf_stream_load, protobuf_stream_dump
 from distributions.lp.clustering import PitmanYor
-from distributions.util import multinomial_goodness_of_fit
+from goftests import multinomial_goodness_of_fit
 from loom.util import tempdir
 import loom.schema_pb2
 import loom.schema

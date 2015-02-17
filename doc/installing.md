@@ -1,7 +1,7 @@
 # Installing Loom + Distributions
 
 Loom targets Ubuntu 12.04 and 14.04 systems and requires the
-[distributions](https://github.com/forcedotcom/distributions) library.
+[distributions](https://github.com/posterior/distributions) library.
 This guide describes how to install both loom and distributions.
 
 ## Installing with virtualenvwrapper (recommended)
@@ -17,8 +17,8 @@ This guide describes how to install both loom and distributions.
     workon loom     # pulls the above definitions into current environment
 
     # 3. Clone the repos.
-    git clone https://github.com/forcedotcom/distributions
-    git clone https://github.com/priorknowledge/loom
+    git clone https://github.com/posterior/distributions
+    git clone https://github.com/posterior/loom
 
     # 4. Install required packages.
     sudo easy_install pip

@@ -422,7 +422,7 @@ Within C++, the lowest-level data structures are mostly provided by
 protocol buffers in [schema.proto](/src/schema.proto) (
 notably `ProductValue`, `ProductValue::Diff`, and `Row`),
 or by `Mixture` objects from the
-[distributions](https://github.com/forcedotcom/distributions) library.
+[distributions](https://github.com/posterior/distributions) library.
 On top of these basic structures, loom builds `ProductModel` and `ProductMixture` data structures for Dirichlet Process inference.
 The `CrossCat` structure holds a factorized collection of `ProductModel`,`ProductMixture` pairs, one pair per kind.
 Finally, the `Loom` object wraps a `CrossCat` object for hyperparameters and sufficient statistics, plus an `Assignments` object for row-category assignments.
@@ -478,7 +478,7 @@ Loom uses four techniques for parallelization:
 
 4.  Vectorizing low-level math using SIMD operations.
     This is outsourced to the
-    [distributions](https://github.com/forcedotcom/distributions) library.
+    [distributions](https://github.com/posterior/distributions) library.
 
 In addition, loom uses openmp to parallelize other simple operations like
 loading files and precomputing computation caches.

@@ -23,7 +23,7 @@ before_install:
   - sudo ./requirements.sh
   - cd
   - rm -rf distributions
-  - git clone --branch=$DISTRIBUTIONS_TAG --depth=1 https://github.com/forcedotcom/distributions.git
+  - git clone --branch=$DISTRIBUTIONS_TAG --depth=1 https://github.com/posterior/distributions.git
   - cd distributions
   - pip install -r requirements.txt --download-cache $HOME/.pip-cache
   - make install

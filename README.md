@@ -60,8 +60,8 @@ row                 rows                rows               row/sec
 Loom is a streaming rewrite of the TARDIS engine developed by
 Eric Jonas <https://twitter.com/stochastician> at Prior Knowledge, Inc.
 
-Loom relies heavily on Salesforce.com's
-[distributions](https://github.com/forcedotcom/distributions) library.
+Loom relies heavily on the
+[distributions](https://github.com/posterior/distributions) library.
 
 ## License
 
@@ -93,6 +93,7 @@ The PreQL query interface is covered by US patents pending:
 * [google protobuf](https://code.google.com/p/protobuf) - Apache 2.0
 * [google perftools](https://code.google.com/p/gperftools) - New BSD
 * [parsable](https://pypi.python.org/pypi/parsable) - MIT
-* [distributions](https://github.com/forcedotcom/distributions) - Revised BSD
+* [distributions](https://github.com/posterior/distributions) - Revised BSD
+* [goftests](https://github.com/posterior/goftests) - Revised BSD
 * [nose](https://pypi.python.org/pypi/nose) - LGPL
 * [mock](https://pypi.python.org/pypi/mock) - New BSD

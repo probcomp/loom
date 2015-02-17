@@ -32,8 +32,8 @@ from nose.tools import assert_greater
 from nose.tools import assert_less
 from nose.tools import assert_less_equal
 from distributions.fileutil import tempdir
-from distributions.util import density_goodness_of_fit
-from distributions.util import discrete_goodness_of_fit
+from goftests import density_goodness_of_fit
+from goftests import discrete_goodness_of_fit
 import loom.datasets
 import loom.preql
 import loom.query

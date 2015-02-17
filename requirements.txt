@@ -10,9 +10,10 @@ pymetis
 simplejson
 protobuf<=2.5.0
 parsable
+goftests
 pyflakes
 pep8
 nose
 cpplint
 mock
-git+ssh://git@github.com/forcedotcom/distributions@2.0.28
+git+ssh://git@github.com/posterior/distributions@2.0.28
