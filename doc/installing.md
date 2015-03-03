@@ -1,8 +1,13 @@
 # Installing Loom + Distributions
 
-Loom targets Ubuntu 12.04 and 14.04 systems and requires the
+Loom targets Ubuntu 12.04 and 14.04 (with gcc-4.8) systems and requires the
 [distributions](https://github.com/posterior/distributions) library.
 This guide describes how to install both loom and distributions.
+
+*WARNING* loom does not work with gcc-4.9, so on ubuntu 14.04 systems,
+
+    export CC=gcc-4.8
+    export CXX=g++-4.8
 
 ## Installing with virtualenvwrapper (recommended)
 

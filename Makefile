@@ -15,13 +15,20 @@ cmake = $(cmake_env) cmake $(cmake_args)
 
 all: debug release
 
-debug: FORCE
+check_gcc_version: FORCE
+	@($(CXX) -dumpversion | grep -v '^4\.9') || (		\
+	  echo 'ERROR loom is known to break with gcc 4.9';	\
+	  echo '  try gcc-4.8 instead';				\
+	  exit 1						\
+	)
+
+debug: check_gcc_version FORCE
 	mkdir -p build/debug
 	cd build/debug \
 	  && $(cmake) -DCMAKE_BUILD_TYPE=Debug ../.. \
 	  && $(MAKE)
 
-release: FORCE
+release: check_gcc_version FORCE
 	mkdir -p build/release
 	cd build/release \
 	  && $(cmake) -DCMAKE_BUILD_TYPE=Release ../.. \
