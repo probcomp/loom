@@ -239,7 +239,6 @@ class QueryServer(object):
         result = {}
         for i in xrange(0, len(row_sets), tile_size):
             row_tile = row_sets[i: i + tile_size]
-            print 'DEBUG', row_tile
             for j in xrange(0, len(col_sets), tile_size):
                 col_tile = col_sets[j: j + tile_size]
                 result.update(self._entropy(
