@@ -565,7 +565,7 @@ class PreQL(object):
         query_sets = map(self._cols_to_mask, query_feature_sets)
         target_labels = map(min, target_feature_sets)
         query_labels = map(min, query_feature_sets)
-        entropys = self._query_server.entropy(
+        entropys = self._query_server.tiled_entropy(
             row_sets=target_sets,
             col_sets=query_sets,
             conditioning_row=conditioning_row,

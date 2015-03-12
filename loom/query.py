@@ -225,6 +225,15 @@ class QueryServer(object):
             for col_set in col_sets
         }
 
+    def tiled_entropy(self, row_sets, col_sets, tile_size=1000, **kwargs):
+        result = {}
+        for i in xrange(0, len(row_sets), tile_size):
+            row_tile = row_sets[i, i + tile_size]
+            for j in xrange(0, len(col_sets), tile_size):
+                col_tile = col_sets[j, j + tile_size]
+                result.update(self.entropy(row_tile, col_tile, **kwargs))
+        return result
+
     def mutual_information(
             self,
             feature_set1,
