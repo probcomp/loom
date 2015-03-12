@@ -42,6 +42,7 @@ DEFAULTS = {
     'entropy_sample_count': 1000,
     'mutual_information_sample_count': 1000,
     'similar_row_limit': 1000,
+    'tile_size': 500,
 }
 BUFFER_SIZE = 10
 
@@ -188,7 +189,7 @@ class QueryServer(object):
         for _ in xrange(buffered):
             yield self._receive_score()
 
-    def entropy(
+    def _entropy(
             self,
             row_sets,
             col_sets,
@@ -225,13 +226,27 @@ class QueryServer(object):
             for col_set in col_sets
         }
 
-    def tiled_entropy(self, row_sets, col_sets, tile_size=1000, **kwargs):
+    def entropy(
+            self,
+            row_sets,
+            col_sets,
+            conditioning_row=None,
+            sample_count=None,
+            tile_size=None):
+        if tile_size is None:
+            tile_size = DEFAULTS['tile_size']
+        assert tile_size > 0, tile_size
         result = {}
         for i in xrange(0, len(row_sets), tile_size):
-            row_tile = row_sets[i, i + tile_size]
+            row_tile = row_sets[i: i + tile_size]
+            print 'DEBUG', row_tile
             for j in xrange(0, len(col_sets), tile_size):
-                col_tile = col_sets[j, j + tile_size]
-                result.update(self.entropy(row_tile, col_tile, **kwargs))
+                col_tile = col_sets[j: j + tile_size]
+                result.update(self._entropy(
+                    row_tile,
+                    col_tile,
+                    conditioning_row,
+                    sample_count))
         return result
 
     def mutual_information(

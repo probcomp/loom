@@ -26,8 +26,12 @@
 # USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 from itertools import izip
-from nose.tools import assert_true, assert_equal, assert_not_equal
+from nose.tools import assert_equal
+from nose.tools import assert_set_equal
+from nose.tools import assert_not_equal
+from nose.tools import assert_true
 from distributions.dbg.random import sample_bernoulli
+from distributions.io.stream import json_load
 from distributions.io.stream import open_compressed
 from distributions.fileutil import tempdir
 from loom.schema_pb2 import ProductValue, CrossCat, Query
@@ -223,3 +227,20 @@ def test_seed(root, model, rows, **unused):
 
     assert_equal(responses1, responses2)
     assert_not_equal(responses1, responses3)
+
+
+@for_each_dataset
+def test_tiled_entropy(root, schema, **unused):
+    feature_count = len(json_load(schema))
+    feature_sets = [frozenset([i]) for i in xrange(feature_count)]
+    kwargs = {
+        'row_sets': feature_sets,
+        'col_sets': feature_sets,
+        'sample_count': 10
+    }
+    with loom.query.get_server(root, debug=True) as server:
+        expected = set(server.entropy(**kwargs))
+        for tile_size in xrange(1, 1 + feature_count):
+            print 'tile_size = {}'.format(tile_size)
+            actual = set(server.entropy(tile_size=tile_size, **kwargs))
+            assert_set_equal(expected, actual)

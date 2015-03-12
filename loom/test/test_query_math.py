@@ -104,14 +104,10 @@ def test_samples_match_scores(root, rows, **unused):
 
 
 @for_each_dataset
-def test_entropy(name, **unused):
-    _test_entropy(name, sample_count=1000)
-
-
-def _test_entropy(name, sample_count):
-    paths = loom.store.get_paths(name)
-    with loom.query.get_server(paths['root']) as server:
-        rows = load_rows(paths['ingest']['rows'])
+def test_entropy(root, ingest, **unused):
+    sample_count = 1000
+    with loom.query.get_server(root) as server:
+        rows = load_rows(ingest['rows'])
         rows = rows[:4]
         rows = [loom.query.protobuf_to_data_row(row.diff) for row in rows]
         rows = [[None] * len(rows[0])] + rows
