@@ -235,6 +235,8 @@ class QueryServer(object):
             tile_size=None):
         if tile_size is None:
             tile_size = DEFAULTS['tile_size']
+        min_size = max(1, min(tile_size, len(row_sets), len(col_sets)))
+        tile_size = tile_size * tile_size / min_size
         assert tile_size > 0, tile_size
         result = {}
         for i in xrange(0, len(row_sets), tile_size):
