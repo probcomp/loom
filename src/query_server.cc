@@ -1,4 +1,5 @@
 // Copyright (c) 2014, Salesforce.com, Inc.  All rights reserved.
+// Copyright (c) 2015, Google, Inc.
 //
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions
@@ -460,15 +461,15 @@ void QueryServer::call (
     protobuf::Row update_row;
     update_row.set_id(0);
     * update_row.mutable_diff() = request.update_data();
-    
-    
+
+
     //FIXME is there a better way to get the row count?
     size_t row_count = 0;
     protobuf::InFile all_rows(rows_in_);
     while (all_rows.try_read_stream(row)) {
         row_count++;
     }
-            
+
     for (const auto * cross_cat : cross_cats_) {
         cat_kernels.push_back(
             new CatKernel(
