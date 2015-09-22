@@ -34,30 +34,30 @@ package protobuf.loom;
 
 message HyperPrior {
   message BetaBernoulli {
-    repeated float alpha = 1;
-    repeated float beta = 2;
+    repeated float alpha = 1 [packed = true];
+    repeated float beta = 2 [packed = true];
   }
   message DirichletDiscrete {
-    repeated float alpha = 1;
+    repeated float alpha = 1 [packed = true];
   }
   message DirichletProcessDiscrete {
-    repeated float gamma = 1;
-    repeated float alpha = 2;
+    repeated float gamma = 1 [packed = true];
+    repeated float alpha = 2 [packed = true];
   }
   message GammaPoisson {
-    repeated float alpha = 1;
-    repeated float inv_beta = 2;
+    repeated float alpha = 1 [packed = true];
+    repeated float inv_beta = 2 [packed = true];
   }
   message BetaNegativeBinomial {
-    repeated float alpha = 1;
-    repeated float beta = 2;
-    repeated uint64 r = 3;
+    repeated float alpha = 1 [packed = true];
+    repeated float beta = 2 [packed = true];
+    repeated uint64 r = 3 [packed = true];
   }
   message NormalInverseChiSq {
-    repeated float mu = 1;
-    repeated float kappa = 2;
-    repeated float sigmasq = 3;
-    repeated float nu = 4;
+    repeated float mu = 1 [packed = true];
+    repeated float kappa = 2 [packed = true];
+    repeated float sigmasq = 3 [packed = true];
+    repeated float nu = 4 [packed = true];
   }
 
   repeated distributions.Clustering.PitmanYor topology = 1;
@@ -81,20 +81,20 @@ message ProductValue {
       ALL = 3;
     }
     required Sparsity sparsity = 1;
-    repeated bool dense = 2;
-    repeated uint32 sparse = 3;
+    repeated bool dense = 2 [packed = true];
+    repeated uint32 sparse = 3 [packed = true];
   }
 
   message Diff {
     required ProductValue pos = 1;
     required ProductValue neg = 2;
-    repeated uint32 tares = 3;
+    repeated uint32 tares = 3 [packed = true];
   }
 
   required Observed observed = 1;
-  repeated bool booleans = 2;  // including bb
-  repeated uint32 counts = 3;  // including dd, dpd, gp, bnb
-  repeated float reals = 4;  // including nich
+  repeated bool booleans = 2 [packed = true];  // including bb
+  repeated uint32 counts = 3 [packed = true];  // including dd, dpd, gp, bnb
+  repeated float reals = 4 [packed = true];  // including nich
 }
 
 //----------------------------------------------------------------------------
@@ -127,7 +127,7 @@ message ProductModel {
 message CrossCat {
   message Kind {
     required ProductModel.Shared product_model = 1;
-    repeated uint32 featureids = 2;
+    repeated uint32 featureids = 2 [packed = true];
   }
 
   repeated Kind kinds = 1;
@@ -140,7 +140,7 @@ message CrossCat {
 message CrossCatTree {
   message Parent {
     required uint32 id = 1;
-    repeated uint32 child_ids = 2;
+    repeated uint32 child_ids = 2 [packed = true];
     required ProductModel.Shared shared = 3;
   }
 
@@ -160,7 +160,7 @@ message Row {
 
 message Assignment {
   required uint64 rowid = 1;
-  repeated uint32 groupids = 2;
+  repeated uint32 groupids = 2 [packed = true];
 }
 
 //----------------------------------------------------------------------------
@@ -270,8 +270,8 @@ message LogMessage
     {
       required distributions.Clustering.PitmanYor model_hypers = 1;
       repeated distributions.Clustering.PitmanYor kind_hypers = 2;
-      repeated uint32 feature_counts = 3;
-      repeated uint32 category_counts = 4;
+      repeated uint32 feature_counts = 3 [packed = true];
+      repeated uint32 category_counts = 4 [packed = true];
     }
     message Scores
     {
@@ -279,7 +279,7 @@ message LogMessage
       optional float kl_divergence = 2;
       optional uint64 total_object_count = 3;
       optional uint64 assigned_object_count = 4;
-      repeated float features = 5;
+      repeated float features = 5 [packed = true];
     }
     message KernelStatus
     {
@@ -301,8 +301,8 @@ message LogMessage
         required uint64 total_time = 8;
       }
       message ParCat {
-        repeated uint64 times = 1;
-        repeated uint64 counts = 2;
+        repeated uint64 times = 1 [packed = true];
+        repeated uint64 counts = 2 [packed = true];
       }
 
       optional Cat cat = 1;
@@ -326,10 +326,10 @@ message LogMessage
 
 message PosteriorEnum {
   message Group {
-    repeated uint32 rowids = 1;
+    repeated uint32 rowids = 1 [packed = true];
   }
   message Kind {
-    repeated uint32 featureids = 1;
+    repeated uint32 featureids = 1 [packed = true];
     repeated Group groups = 2;
   }
   message Sample {
@@ -379,8 +379,8 @@ message Query
     }
     message Response
     {
-      repeated float means = 1;
-      repeated float variances = 2;
+      repeated float means = 1 [packed = true];
+      repeated float variances = 2 [packed = true];
     }
   }
 
@@ -394,8 +394,8 @@ message Query
     }
     message Response
     {
-      repeated uint64 ids = 1;
-      repeated float score_diffs = 2;
+      repeated uint64 ids = 1 [packed = true];
+      repeated float score_diffs = 2 [packed = true];
     }
   }
 
