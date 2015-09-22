@@ -9,7 +9,7 @@ matplotlib
 pymetis
 simplejson
 protobuf<=2.5.0
-parsable
+parsable>=0.2.0
 goftests
 pyflakes
 pep8

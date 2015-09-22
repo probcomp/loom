@@ -37,6 +37,7 @@ if len(sys.argv) >= 2 and sys.argv[1] == 'bdist_wheel':
 
 from distutils.core import setup, Extension
 from Cython.Build import cythonize
+from parsable import parsable
 
 
 library_dirs = []
@@ -107,6 +108,7 @@ config = {
         'loom.test',
     ],
     'ext_modules': cythonize(ext_modules),
+    'entry_points': parsable.find_entry_points('loom'),
 }
 
 setup(**config)
