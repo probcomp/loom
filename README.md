@@ -66,6 +66,7 @@ Loom relies heavily on the
 ## License
 
 Copyright (c) 2014 Salesforce.com, Inc. All rights reserved.
+Copyright (c) 2015, Google, Inc.
 
 Licensed under the Revised BSD License.
 See [LICENSE.txt](LICENSE.txt) for details.
