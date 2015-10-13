@@ -139,7 +139,7 @@ def find_consensus_grouping(groupings, debug=False):
         raise LoomError('similarity.max() = {}'.format(similarity.max()))
     similarity *= 2**16  # metis segfaults if this is too large
     int_similarity = numpy.zeros(similarity.shape, dtype=numpy.int32)
-    numpy.rint(similarity, out=int_similarity)
+    int_similarity[:] = numpy.rint(similarity)
 
     edges = int_similarity.nonzero()
     edge_weights = map(int, int_similarity[edges])
