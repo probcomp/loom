@@ -119,7 +119,8 @@ def test(sample_count=2, force=True, debug=False):
 
 def generate_one((name, sample_count, force, debug)):
     paths = loom.store.get_paths(name, sample_count=sample_count)
-    if not force and all(os.path.exists(f) for f in paths.itervalues()):
+    leaves = loom.store.iter_paths(name, paths)
+    if not force and all(os.path.exists(f) for _, f in leaves):
         with open_compressed(paths['ingest']['version']) as f:
             version = f.read().strip()
         if version == loom.__version__:
