@@ -1,6 +1,7 @@
-[![Build Status](https://travis-ci.org/posterior/loom.svg?branch=master)](https://travis-ci.org/posterior/loom)
-
 # Loom
+
+[![Build Status](https://travis-ci.org/posterior/loom.svg?branch=master)](https://travis-ci.org/posterior/loom)
+[![DOI](https://zenodo.org/badge/29212705.svg)](https://zenodo.org/badge/latestdoi/29212705)
 
 Loom is a streaming inference and query engine for the
 Cross-Categorization model [mansinghka2009cross, shafto2011probabilistic](/doc/references.bib).
