@@ -1,21 +1,21 @@
 #!/bin/sh
 
 sudo apt-get install -y \
-    make \
     cmake \
+    cython \
     g++ \
-    protobuf-compiler \
-    libprotobuf-dev \
-    libgoogle-perftools-dev \
+    graphviz \
     libboost-python-dev \
     libeigen3-dev \
-    python-setuptools \
-    cython \
+    libgoogle-perftools-dev \
+    libprotobuf-dev \
+    make \
+    protobuf-compiler \
+    python-dateutil \
+    python-matplotlib \
     python-numpy \
+    python-pandas \
+    python-pil \
     python-scipy \
-    graphviz \
-    unzip \
-    #
-
-# install distributions separately
-grep -v distributions requirements.txt | xargs pip install
+    python-setuptools \
+    unzip
