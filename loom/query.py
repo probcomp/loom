@@ -80,6 +80,7 @@ def data_row_to_protobuf(data_row, diff):
     fields = {
         bool: diff.pos.booleans,
         int: diff.pos.counts,
+        long: diff.pos.counts,
         float: diff.pos.reals,
     }
     for val in data_row:
