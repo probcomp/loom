@@ -70,7 +70,7 @@ def _check_marginal_samples_match_scores(server, row, fi):
     samples = server.sample(to_sample, row, SAMPLE_COUNT)
     val = samples[0][fi]
     base_score = server.score(row)
-    if isinstance(val, bool) or isinstance(val, int):
+    if isinstance(val, bool) or isinstance(val, (int, long)):
         probs_dict = {}
         samples = [sample[fi] for sample in samples]
         for sample in set(samples):
