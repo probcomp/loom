@@ -125,7 +125,9 @@ def test_predict_pandas(root, rows_csv, schema, **unused):
         print rows_df
         row_count = rows_df.shape[0]
         assert_equal(rows_df.shape[1], feature_count)
-        rows_io = StringIO(rows_df.to_csv())
+        _rows_io = StringIO()
+        rows_df.to_csv(_rows_io)
+        rows_io = StringIO(_rows_io.getvalue())
         result_string = preql.predict(rows_io, COUNT, id_offset=True)
         result_df = pandas.read_csv(StringIO(result_string), index_col=False)
         print 'result_df ='
