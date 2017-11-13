@@ -1,0 +1,10 @@
+This directory contains a Dockerfile which shows how to install Loom and
+its main dependency, Distributions, into a fresh Ubuntu 16.04 system.
+
+To build the Docker image:
+
+    docker build -t posterior/loom -f ubuntu1604 .
+
+To run the tests:
+
+    docker run --rm posterior/loom

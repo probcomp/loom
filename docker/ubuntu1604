@@ -1,0 +1,51 @@
+FROM            ubuntu:16.04
+MAINTAINER      Posterior Knowledge <https://github.com/posterior>
+
+RUN             apt-get update -qq \
+                && apt-get upgrade -qq \
+                && apt-get install -qq -y \
+                    cmake \
+                    cython \
+                    g++ \
+                    git \
+                    graphviz \
+                    libboost-python-dev \
+                    libeigen3-dev \
+                    libgoogle-perftools-dev \
+                    libprotobuf-dev \
+                    make \
+                    protobuf-compiler \
+                    python-contextlib2 \
+                    python-dateutil \
+                    python-matplotlib \
+                    python-numpy \
+                    python-pil \
+                    python-pandas \
+                    python-pyflakes \
+                    python-scipy \
+                    python-setuptools \
+                    python-sklearn \
+                    python-virtualenv \
+                    unzip
+
+RUN             virtualenv --system-site-packages /venv
+RUN             . /venv/bin/activate && pip install -I cpplint nose
+
+RUN             git clone https://github.com/posterior/distributions.git
+RUN             git clone https://github.com/posterior/loom.git
+
+RUN             echo 'export LD_LIBRARY_PATH=$VIRTUAL_ENV/lib' >> /venv/bin/activate
+ENV             DISTRIBUTIONS_USE_PROTOBUF=1
+
+WORKDIR         /distributions
+RUN             . /venv/bin/activate && make install
+
+WORKDIR         /loom
+RUN             . /venv/bin/activate && pip install -r requirements.txt
+RUN             . /venv/bin/activate && make install
+
+CMD             . /venv/bin/activate \
+                    ; cd /distributions \
+                    ; make test \
+                    ; cd /loom \
+                    ; make small-test
