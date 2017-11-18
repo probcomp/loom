@@ -332,7 +332,6 @@ class PreQL(object):
                 conditioning_row,
                 count)
             for sample in samples:
-                print sample
                 sample = self.decode_row(sample, header)
                 if id_offset:
                     sample[0] = row_id
