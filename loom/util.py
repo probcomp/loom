@@ -154,10 +154,10 @@ def parallel_map(fun, args):
         args = list(args)
     is_daemon = multiprocessing.current_process().daemon
     if THREADS == 1 or len(args) < 2 or is_daemon:
-        print 'Running {} in this thread'.format(fun.__name__)
+        LOG('Running {} in this thread'.format(fun.__name__))
         return map(fun, args)
     else:
-        print 'Running {} in {:d} threads'.format(fun.__name__, THREADS)
+        LOG('Running {} in {:d} threads'.format(fun.__name__, THREADS))
         pool = multiprocessing.Pool(THREADS)
         fun_args = [(fun, arg) for arg in args]
         return pool.map(print_trace, fun_args, chunksize=1)
