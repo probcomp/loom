@@ -1,0 +1,29 @@
+package:
+  name: loom
+  version: "2.2.1"
+
+source:
+  path: ../
+
+requirements:
+  build:
+    - distributions 2.2.1
+    - cmake
+    - cython 0.23.*
+    - libprotobuf 2.6.1
+    - numpy 1.11.*
+    - python 2.7.*
+    - pyflakes
+  run:
+    - distributions 2.2.1
+    - libprotobuf 2.6.1
+    - numpy 1.11.*
+    - python 2.7.*
+    - simplejson
+
+test:
+  commands:
+    - NOSE_PROCESSES=0 make small-test
+
+about:
+  home: https://github.com/posterior/loom
