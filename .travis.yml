@@ -1,33 +1,29 @@
 language: python
+dist: trusty
+env:
+  global:
+    - PACKAGE_NAME=loom
+    # get all the branches referencing this commit
+    - REAL_BRANCH=$(git ls-remote origin | sed -n "\|$TRAVIS_COMMIT\s\+refs/heads/|{s///p}")
+    - DISTRIBUTIONS_USE_PROTOBUF=1
+    - MAKEFLAGS="-j 2 -S"
+    - LOOM_THREADS=2
+    - OMP_NUM_THREADS=2
+
 python:
   - 2.7
-cache:
-  apt: true
-  directories:
-  - $HOME/.pip-cache
-virtualenv:
-  system_site_packages: true
-before_install:
-  - export CLONE=$PWD
-  - export LD_LIBRARY_PATH=$VIRTUAL_ENV/lib:$LD_LIBRARY_PATH
-  - export DISTRIBUTIONS_USE_PROTOBUF=1
-  - export MAKEFLAGS="-j 2 -S"
-  - export LOOM_THREADS=2
-  - export OMP_NUM_THREADS=2
-  - env
-  - pip uninstall numpy -y || echo 'numpy not installed'
-  - sudo apt-get update -qq
-  - sudo ./requirements.sh
-  - cd
-  - rm -rf distributions
-  - git clone https://github.com/posterior/distributions.git
-  - cd distributions
-  - pip install -r requirements.txt
-  - make install
-  - cd $CLONE
-  - pip install -r requirements.txt
 install:
-  - make install
-  - pip freeze
+  - wget https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh -O miniconda.sh
+  - bash miniconda.sh -b -p $HOME/miniconda
+  - export PATH="$HOME/miniconda/bin:$PATH"
+  - hash -r
+  - conda config --set always_yes yes --set changeps1 no
+  - conda update -q conda
+  - conda install conda-build
 script:
-  - NOSE_PROCESSES=0 make small-test
+  - export CONDA_PACKAGE_VERSION="${TRAVIS_TAG:-$(date +%Y.%m.%d)}"
+  # remove leading v from tags if they exist
+  - CONDA_PACKAGE_VERSION="$(sed s/^v// <<<$CONDA_PACKAGE_VERSION)"
+  - conda build . -c probcomp
+after_success:
+  - bash conda/upload.sh
