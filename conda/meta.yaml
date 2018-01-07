@@ -10,12 +10,14 @@ requirements:
     - distributions 2.2.1
     - cmake
     - cython 0.23.*
+    - gperftools 2.5.*
     - libprotobuf 2.6.1
     - numpy 1.11.*
     - python 2.7.*
     - pyflakes
   run:
     - distributions 2.2.1
+    - gperftools 2.5.*
     - libprotobuf 2.6.1
     - matplotlib 1.5.*
     - numpy 1.11.*

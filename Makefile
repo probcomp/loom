@@ -10,6 +10,13 @@ cmake_env=
 ifdef VIRTUAL_ENV
 	cmake_args+=-DCMAKE_INSTALL_PREFIX=$(VIRTUAL_ENV)
 	cmake_env+=CMAKE_PREFIX_PATH=$(VIRTUAL_ENV)
+else
+	ifdef CONDA_PREFIX
+		cmake_args+=-DCMAKE_INSTALL_PREFIX=$(CONDA_PREFIX)
+		cmake_args+=-DEXTRA_INCLUDE_PATH=$(CONDA_PREFIX)/include
+		cmake_args+=-DEXTRA_LIBRARY_PATH=$(CONDA_PREFIX)/lib
+		cmake_env+=CMAKE_PREFIX_PATH=$(CONDA_PREFIX)
+	endif
 endif
 cmake = $(cmake_env) cmake $(cmake_args)
 
