@@ -1,3 +1,3 @@
 #!/bin/sh
-export CMAKE_PREFIX_PATH=${PREFIX}
+export PREFIX_PATH=${PREFIX}
 make install
