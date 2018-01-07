@@ -12,8 +12,7 @@ requirements:
     - cython 0.23.*
     - gperftools 2.5.*
     - libprotobuf 2.6.1
-    - numpy 1.11.*
-    - parsable
+    - parsable 0.2.*
     - python 2.7.*
     - pyflakes
   run:
