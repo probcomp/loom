@@ -1,2 +1,2 @@
 #!/bin/sh
-DISTRIBUTIONS_USE_PROTOBUF=1 make install
+CMAKE_PREFIX_PATH=${PREFIX} make install
