@@ -16,12 +16,16 @@ requirements:
     - python 2.7.*
     - pyflakes
   run:
+    - contextlib2 >=0.4.0
     - distributions 2.2.1
     - gperftools 2.5.*
     - libprotobuf 2.6.1
     - matplotlib 1.5.*
     - numpy 1.11.*
     - pandas 0.18.*
+    - parsable 0.2.*
+    - protobuf 2.6.*
+    - pymetis
     - python 2.7.*
     - scipy 0.17.*
     - scikit-learn 0.17.*
