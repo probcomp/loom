@@ -43,7 +43,7 @@ from parsable import parsable
 library_dirs = []
 libraries = ['protobuf', 'distributions_shared']
 include_dirs = ['include']
-ve = os.environ.get('VIRTUAL_ENV')
+ve = os.environ.get('CONDA_PREFIX')
 if ve:
     include_dirs.append(os.path.join(ve, 'include'))
     library_dirs.append(os.path.join(ve, 'lib'))
