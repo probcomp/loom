@@ -13,6 +13,7 @@ requirements:
     - gperftools 2.5.*
     - libprotobuf 2.6.1
     - numpy 1.11.*
+    - parsable
     - python 2.7.*
     - pyflakes
   run:
