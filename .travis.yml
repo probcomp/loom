@@ -13,7 +13,7 @@ env:
 addons:
   artifacts:
     paths:
-    - $HOME/miniconda/conda-bld/linux-64/loom-*.tar.bz2
+    - $HOME/miniconda/conda-bld/linux-64/loom-0.2.10-py27_0.tar.bz2
 
 python:
   - 2.7
