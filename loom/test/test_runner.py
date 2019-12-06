@@ -312,3 +312,7 @@ def test_generate(model, **unused):
                 group_counts = get_group_counts(groups_out)
                 print 'group_counts: {}'.format(
                     ' '.join(map(str, group_counts)))
+
+def test_seeding():
+    "Dummy test to see if travis/loom pick it up"
+    raise ValueError('Heeeeere')
