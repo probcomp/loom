@@ -32,6 +32,7 @@ requirements:
     - simplejson
 
 test:
+  path: ../
   requires:
     - nose >=1.3
   commands:
