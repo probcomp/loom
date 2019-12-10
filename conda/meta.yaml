@@ -38,7 +38,7 @@ test:
     - pip install goftests
     - pip install mock
     - python -m loom.datasets test
-    - NOSE_PROCESSES=1 NOSE_PROCESS_TIMEOUT=1800 nosetests -v loom examples
+    - NOSE_PROCESSES=1 NOSE_PROCESS_TIMEOUT=1800 nosetests -v loom
 
 about:
     home: https://github.com/posterior/loom
