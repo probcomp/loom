@@ -35,6 +35,7 @@ test:
   requires:
     - nose >=1.3
   commands:
+    - python -m loom.datasets test
     - NOSE_PROCESSES=1 nosetests -v loom examples
 
 about:
