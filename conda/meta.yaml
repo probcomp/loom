@@ -37,8 +37,6 @@ test:
   commands:
     - pip install goftests
     - pip install mock
-    - pyflakes setup.py loom examples
-    - pep8 --repeat --ignore=E402,E731 --exclude=*_pb2.py setup.py loom examples
     - python -m loom.datasets test
     - NOSE_PROCESSES=1 NOSE_PROCESS_TIMEOUT=1800 nosetests -v loom examples
 
