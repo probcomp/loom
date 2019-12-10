@@ -37,7 +37,6 @@ test:
   commands:
     - pip install goftests
     - pip install mock
-    - pyflakes loom/schema_pb2.py || (echo '...patching schema_pb2.py'  ; sed -i '/descriptor_pb2/d' loom/schema_pb2.py)  # HACK taken from Obermeyer's Makefile.
     - pyflakes setup.py loom examples
     - pep8 --repeat --ignore=E402,E731 --exclude=*_pb2.py setup.py loom examples
     - python -m loom.datasets test
