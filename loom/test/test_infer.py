@@ -5,6 +5,9 @@ def _learn_seeded_taxi(seed):
     config = {'schedule': {'extra_passes': 1.0}, 'seed':seed}
     path_to_taxi = 'examples/taxi'
     name = 'taxi-{}'.format(seed)
+    import os
+    cwd = os.getcwd()
+    raise ValueError(cwd)
     loom.tasks.ingest(
             name,
             '{}/schema.json'.format(path_to_taxi),
