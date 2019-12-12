@@ -1,36 +1,28 @@
+import pandas as pd
+import numpy as np
+
 import loom.tasks
-
-
-def _hepler_travis():
-    """Silly helper to debug travis :( To be deleted."""
-    import os
-    cwd1 = os.getcwd()
-    ls1 = '\n'.join(os.listdir(cwd1))
-    os.chdir('..')
-    cwd2 = os.getcwd()
-    ls2 = '\n'.join(os.listdir(cwd2))
-    return cwd1 + '\n' + ls1 + '\n\n\n' + cwd2 +  '\n' +ls2
 
 def _learn_seeded_taxi(seed):
     """Helper function to learn the exact same taxi model with different seeds"""
     config = {'schedule': {'extra_passes': 1.0}, 'seed':seed}
-    path_to_taxi = 'examples/taxi'
-    name = 'taxi-{}'.format(seed)
-    message = _hepler_travis()
-    assert False, message
-    loom.tasks.ingest(
-            name,
-            '{}/schema.json'.format(path_to_taxi),
-            '{}/example.json'.format(path_to_taxi),
-            debug=True
-    )
+    name = 'seeding-test'
+    loom.tasks.ingest(name, 'synth-schema.json', 'synth.csv', debug=True)
     loom.tasks.infer(name, sample_count=0, config=config, debug=True)
     with loom.tasks.query(name) as server:
-        dependencies = server.relate(['fare_amount', 'surchare'])
+        dependencies = server.relate(['a', 'b'])
     return dependencies
 
 def test_seeding():
     """Test if we can seed learning"""
+    schema = {'a':'nich', 'b': 'nich'}
+    with open('synth-schema.json', 'w') as outfile:
+        json.dump(schema, outfile)
+    df = pd.DataFrame({
+        'a':np.random.normal(0, 1, size=10),
+        'b':np.random.normal(0, 1, size=10)
+    })
+    df.to_csv('synth.csv', index=False)
     dependencies_1 = _learn_seeded_taxi(42)
     dependencies_2 = _learn_seeded_taxi(42)
     assert dependencies_1 == dependencies_2, 'Setting the seeed did not work'
