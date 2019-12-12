@@ -1,13 +1,23 @@
 import loom.tasks
 
+
+def _hepler_travis():
+    """Silly helper to debug travis :( To be deleted."""
+    import os
+    cwd1 = os.getcwd()
+    ls1 = '\n'.join(os.listdir(cwd1))
+    os.chdir('..')
+    cwd2 = os.getcwd()
+    ls2 = '\n'.join(os.listdir(cwd2))
+    return cwd1 + '\n' + ls1 + '\n\n\n' + cwd2 +  '\n' +ls2
+
 def _learn_seeded_taxi(seed):
     """Helper function to learn the exact same taxi model with different seeds"""
     config = {'schedule': {'extra_passes': 1.0}, 'seed':seed}
     path_to_taxi = 'examples/taxi'
     name = 'taxi-{}'.format(seed)
-    import os
-    cwd = os.getcwd()
-    assert False, cwd
+    message = _hepler_travis()
+    assert False, message
     loom.tasks.ingest(
             name,
             '{}/schema.json'.format(path_to_taxi),
