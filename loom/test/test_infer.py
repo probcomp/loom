@@ -29,7 +29,3 @@ def test_seeding():
     assert dependencies_1 == dependencies_2, 'Setting the seeed did not work'
     dependencies_3 = _learn_seeded_taxi(43)
     assert dependencies_1 != dependencies_3, 'Auto-seeding overwrites our seed'
-    raise ValueError('this worked!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
-
-
-
