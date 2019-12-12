@@ -9,7 +9,7 @@ def _learn_seeded_taxi(seed):
     config = {'schedule': {'extra_passes': 1.0}, 'seed':seed}
     name = 'seeding-test'
     loom.tasks.ingest(name, 'synth-schema.json', 'synth.csv', debug=True)
-    loom.tasks.infer(name, sample_count=0, config=config, debug=True)
+    loom.tasks.infer(name, sample_count=1, config=config, debug=True)
     with loom.tasks.query(name) as server:
         dependencies = server.relate(['a', 'b'])
     return dependencies
