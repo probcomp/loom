@@ -7,7 +7,7 @@ def _learn_seeded_taxi(seed):
     name = 'taxi-{}'.format(seed)
     import os
     cwd = os.getcwd()
-    raise ValueError(cwd)
+    assert False, cwd
     loom.tasks.ingest(
             name,
             '{}/schema.json'.format(path_to_taxi),
