@@ -32,7 +32,7 @@ RUN             virtualenv --system-site-packages /venv
 RUN             . /venv/bin/activate && pip install -I cpplint nose
 
 RUN             git clone https://github.com/posterior/distributions.git
-RUN             git clone https://github.com/posterior/loom.git
+RUN             git clone https://github.com/probcomp/loom.git
 
 RUN             echo 'export LD_LIBRARY_PATH=$VIRTUAL_ENV/lib' >> /venv/bin/activate
 ENV             DISTRIBUTIONS_USE_PROTOBUF=1
