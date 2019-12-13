@@ -11,7 +11,7 @@ parsable>=0.2.0
 pep8
 protobuf
 pyflakes
-pymetis
+pymetis==2016.2
 scikit-learn
 scipy>=0.9.0
 setuptools>=2.2
