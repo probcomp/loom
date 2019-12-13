@@ -1,5 +1,5 @@
 FROM            ubuntu:16.04
-MAINTAINER      Posterior Knowledge <https://github.com/posterior>
+MAINTAINER      MIT Probabilistic Computing Projection <https://github.com/probcomp>
 
 RUN             apt-get update -qq \
                 && apt-get upgrade -qq \
@@ -31,7 +31,7 @@ RUN             apt-get update -qq \
 RUN             virtualenv --system-site-packages /venv
 RUN             . /venv/bin/activate && pip install -I cpplint nose
 
-RUN             git clone https://github.com/posterior/distributions.git
+RUN             git clone https://github.com/probcomp/distributions.git
 RUN             git clone https://github.com/probcomp/loom.git
 
 RUN             echo 'export LD_LIBRARY_PATH=$VIRTUAL_ENV/lib' >> /venv/bin/activate
