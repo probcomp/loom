@@ -224,7 +224,8 @@ def infer_one(name, seed=0, config=None, debug=False):
         config = json_load(config)
     else:
         config = copy.deepcopy(config)
-    config['seed'] = seed
+    if 'seed' not in config:
+        config['seed'] = seed
     loom.config.config_dump(config, sample['config'])
 
     LOG('generating init')
