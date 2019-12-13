@@ -43,10 +43,12 @@ from parsable import parsable
 library_dirs = []
 libraries = ['protobuf', 'distributions_shared']
 include_dirs = ['include']
-ve = os.environ.get('CONDA_PREFIX')
-if ve:
-    include_dirs.append(os.path.join(ve, 'include'))
-    library_dirs.append(os.path.join(ve, 'lib'))
+prefixes = ['CONDA_PREFIX', 'VIRTUAL_ENV']
+for prefix in prefixes:
+    ve = os.environ.get(prefix)
+    if ve:
+        include_dirs.append(os.path.join(ve, 'include'))
+        library_dirs.append(os.path.join(ve, 'lib'))
 extra_compile_args = [
     '-DDIST_DEBUG_LEVEL=3',
     '-DDIST_THROW_ON_ERROR=1',
