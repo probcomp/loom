@@ -4,7 +4,7 @@ import json
 
 import loom.tasks
 
-def _learn_seeded_taxi(seed):
+def _learn_seeded_model(seed):
     """Helper function to learn the exact same taxi model with different seeds"""
     config = {'schedule': {'extra_passes': 1.0}, 'seed':seed}
     name = 'seeding-test'
@@ -24,8 +24,8 @@ def test_seeding():
         'b':np.random.normal(0, 1, size=10)
     })
     df.to_csv('synth.csv', index=False)
-    dependencies_1 = _learn_seeded_taxi(42)
-    dependencies_2 = _learn_seeded_taxi(42)
+    dependencies_1 = _learn_seeded_model(42)
+    dependencies_2 = _learn_seeded_model(42)
     assert dependencies_1 == dependencies_2, 'Setting the seeed did not work'
-    dependencies_3 = _learn_seeded_taxi(43)
+    dependencies_3 = _learn_seeded_model(43)
     assert dependencies_1 != dependencies_3, 'Auto-seeding overwrites our seed'
