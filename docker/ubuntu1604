@@ -28,7 +28,7 @@ RUN             apt-get update -qq \
                     python-virtualenv \
                     unzip
 
-RUN             virtualenv --system-site-packages /venv
+RUN             virtualenv --system-site-packages --no-setuptools /venv
 RUN             . /venv/bin/activate && pip install -I cpplint nose
 
 RUN             git clone https://github.com/probcomp/distributions.git
